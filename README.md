@@ -10,7 +10,7 @@
 ### The analysis involves utilizing various libraries including pandas, matplotlib, seaborn, xgboost, and prophet, along with SQL for data extraction.
 ## Project Goals
 
-### The primary goals of this project are:
+The primary goals of this project are:
 
     To conduct in-depth analysis of historical futures contracts data.
     To identify patterns and dependencies between different contract months.
@@ -18,7 +18,7 @@
 
 ## Main Features
 
-### Key components of this project include:
+Key components of this project include:
 
     Data Preprocessing: Comprehensive cleaning and preprocessing of the dataset to ensure quality data for analysis.
     Statistical Analysis: Analyzing price differences between different contract months and identifying statistical anomalies.
@@ -27,7 +27,7 @@
 
 ## Technologies Used
 
-### This project makes use of the following libraries and technologies:
+This project makes use of the following libraries and technologies:
 
     Python: Primary programming language for data analysis and modeling.
     pandas: Data manipulation and analysis.
@@ -38,7 +38,7 @@
 
 ## Installation Instructions
 
-### To run this project locally, follow these steps:
+To run this project locally, follow these steps:
 
     Clone the repository: git clone 'https://github.com/your-username/futures-contracts-analysis'
     Navigate to the project directory: cd futures-contracts-analysis
@@ -46,13 +46,13 @@
     Run the Jupyter Notebook or Python script to perform analysis and generate signals.
     Due to the large size of datasets, download them from [insert dataset source] and place them in the appropriate directory within the project.
 
-### It is recommended to run the project in Google Colab for easier access to computational resources.
+It is recommended to run the project in Google Colab for easier access to computational resources.
 ## Authors
 
     kriskalb {https://github.com/kriskalb/}
 
 ## License
 
-### This project is open-source.
+This project is open-source.
 
 Feel free to replace "Your Name" in the Authors section with your name or the names of any collaborators. You can also replace the GitHub repository URL with your project's URL.
