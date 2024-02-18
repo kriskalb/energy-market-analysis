@@ -1,0 +1,58 @@
+WITH rtt AS (SELECT quotation_date,
+                    delivery_date_from,
+                    delivery_date_to,
+                    instrument_name,
+                    instrument_kind,
+                    settlement_price,
+                    low_price,
+                    high_price,
+                    total_volume_mwh,
+                    lots_mw,
+                    turnover_value,
+                    transactions_number,
+                    total_number_of_open_interests_mwh,
+                    open_price,
+                    close_price,
+                    EXTRACT(month FROM quotation_date)     AS quotation_month,
+                    EXTRACT(month FROM delivery_date_from) AS delivery_month
+             FROM quotations_forwards
+             WHERE quotation_date >= '2023-01-01'
+               AND exchange_name = 'TGE'
+--                AND instrument_name LIKE '%_M-%'
+--                AND instrument_name LIKE 'BASE_Y-24'
+               AND settlement_price IS NOT NULL
+             ORDER BY quotation_date, instrument_name),
+     rtt_gas AS (SELECT quotation_date,
+                        delivery_date_from,
+                        delivery_date_to,
+                        instrument_name,
+                        instrument_kind,
+                        settlement_price,
+                        low_price,
+                        high_price,
+                        total_volume_mwh,
+                        lots_mw,
+                        turnover_value,
+                        transactions_number,
+                        total_number_of_open_interests_mwh,
+                        open_price,
+                        close_price,
+                        EXTRACT(month from quotation_date)     AS quotation_month,
+                        EXTRACT(month from delivery_date_from) AS delivery_month
+                 FROM gas.quotations_forwards
+                 WHERE quotation_date >= '2023-01-01'
+                 ORDER BY quotation_date, instrument_name),
+     pse_eua AS (SELECT *
+                 FROM pse_eua),
+     rtt_ee_gas AS (SELECT *
+                    FROM rtt
+                    UNION ALL
+                    SELECT *
+                    FROM rtt_gas
+                    ORDER BY quotation_date),
+     rtt_ee_gas_eua AS (SELECT *
+                        FROM rtt_ee_gas
+                                 LEFT JOIN pse_eua
+                                           ON rtt_ee_gas.quotation_date = pse_eua.delivery_date)
+SELECT *
+FROM rtt_ee_gas_eua
